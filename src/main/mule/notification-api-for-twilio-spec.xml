@@ -14,7 +14,7 @@ http://www.mulesoft.org/schema/mule/tls http://www.mulesoft.org/schema/mule/tls/
     <apikit:config name="notification-api-for-twilio-spec-config" raml="notification-api-for-twilio-spec.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" />
     <twilio-connector:config name="Twilio_Connector_Config" doc:name="Twilio Connector Config" doc:id="6f838329-5075-4e76-b457-2db6d507c97f" property_username="${twilio.username}" property_password="${twilio.password}" property_host="${twilio.host}" property_port="${twilio.port}" property_basePath="${twilio.basePath}" property_protocol="${twilio.protocol}" />
 	<configuration-properties doc:name="Configuration properties" doc:id="2483e7cf-9150-49bc-925c-83f4664330ba" file="mule-app.properties" />
-	<api-gateway:autodiscovery apiId="15522139" doc:name="API Autodiscovery" doc:id="b4257119-cd63-4d84-b717-71187e1b8775" flowRef="notification-api-for-twilio-spec-main" />
+	<api-gateway:autodiscovery apiId="${autodiscovery.api.id}" doc:name="API Autodiscovery" doc:id="b4257119-cd63-4d84-b717-71187e1b8775" flowRef="notification-api-for-twilio-spec-main" />
 	<flow name="notification-api-for-twilio-spec-main">
         <http:listener config-ref="notification-api-for-twilio-spec-httpListenerConfig" path="/api/*">
             <http:response statusCode="#[vars.httpStatus default 200]">
