@@ -149,11 +149,11 @@ output application/json
 var message=payload.body splitBy ' - '
 ---
 {
-	subject: (message[1] splitBy '[Subject: ')[1] replace ']' with '',
+	subject: (message[0] splitBy '[Subject: ')[1] replace ']' with '',
 	recipient: payload.to,
 	id: payload.sid,
 	"type": 'SMS',
-	message: message[2]
+	message: message[1]
 }]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
