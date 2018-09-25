@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:twilio-connector="http://www.mulesoft.org/schema/mule/twilio-connector" xmlns:api-gateway="http://www.mulesoft.org/schema/mule/api-gateway"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/api-gateway http://www.mulesoft.org/schema/mule/api-gateway/current/mule-api-gateway.xsd
+http://www.mulesoft.org/schema/mule/twilio-connector http://www.mulesoft.org/schema/mule/twilio-connector/current/mule-twilio-connector.xsd">
+	<api-gateway:autodiscovery apiId="${api.autodiscovery}" doc:name="API Autodiscovery" doc:id="ddfc6733-49bf-48c8-8958-aaf02dc16e69" flowRef="notification-api-for-twilio-spec-main" />
+	<configuration-properties doc:name="Configuration properties" doc:id="74ed6b03-8f5a-449c-b030-b7df375048b5" file="config/configuration.yaml" />
+	<twilio-connector:config name="Twilio_Connector_Config" doc:name="Twilio Connector Config" doc:id="00acfc69-621e-49d1-b4bd-c76603707706" property_username="${twilio.username}" property_password="${twilio.password}" property_host="${twilio.host}" property_port="${twilio.port}" property_basePath="${twilio.basePath}" property_protocol="${twilio.protocol}" />
+</mule>
