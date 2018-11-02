@@ -20,5 +20,19 @@ pipeline {
         }
       }
     }
+    stage('Build') {
+      parallel {
+        stage('Build') {
+          steps {
+            sh 'echo "Hello Master"'
+          }
+        }
+        stage('Build') {
+          steps {
+            sh 'echo "Hello Develop"'
+          }
+        }
+      }
+    }
   }
 }
