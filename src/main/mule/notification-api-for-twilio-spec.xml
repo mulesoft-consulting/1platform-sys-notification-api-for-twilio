@@ -5,9 +5,9 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
 http://www.mulesoft.org/schema/mule/api-gateway http://www.mulesoft.org/schema/mule/api-gateway/current/mule-api-gateway.xsd
 http://www.mulesoft.org/schema/mule/tls http://www.mulesoft.org/schema/mule/tls/current/mule-tls.xsd">
     <http:listener-config name="notification-api-for-twilio-spec-httpListenerConfig">
-        <http:listener-connection host="0.0.0.0" port="8082" protocol="HTTPS">
+        <http:listener-connection host="0.0.0.0" port="${https.port}" protocol="HTTPS">
 			<tls:context >
-				<tls:key-store type="jks" path="keystore.jks" keyPassword="${keystore.password}" password="${keystore.password}" />
+				<tls:key-store type="jks" path="${keystore.path}" keyPassword="${keystore.password}" password="${keystore.password}" />
 			</tls:context>
 		</http:listener-connection>
     </http:listener-config>
@@ -143,14 +143,17 @@ output application/json
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
 output application/json
-var message=payload.body splitBy ' - '
+var messageRaw=payload.body replace /Sent from your Twilio trial account - / with ''
+var messageArray=messageRaw splitBy ' - '
+var subject=(messageArray[0] splitBy '[Subject: ')[1] replace ']' with ''
+var message=messageArray[1]
 ---
 {
-	subject: (message[0] splitBy '[Subject: ')[1] replace ']' with '',
+	subject: subject,
 	recipient: payload.to,
 	id: payload.sid,
 	"type": 'SMS',
-	message: message[1]
+	message: message
 }]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
@@ -164,9 +167,8 @@ var message=payload.body splitBy ' - '
 output application/java
 ---
 {
-	//ApplicationSid: 'AC824185ac5a510ec17b4b4801808e31d1',
 	To: payload.recipient,
-	From: '+1 850 360 6853',
+	From: p('twilio.fromPhoneNumber'),
 	Body: '[Subject: ' ++ payload.subject as String ++ '] - ' ++ payload.message as String
 }]]></ee:set-payload>
 				</ee:message>

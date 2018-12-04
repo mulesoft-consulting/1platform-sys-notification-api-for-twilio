@@ -2,26 +2,26 @@ https:
   port:
   
 twilio:
-  username:
-  password:
-  protocol:
-  host:
-  port:
-  basePath:
+  username: 
+  password: 
+  protocol: 
+  host: 
+  port: 
+  basePath: 
+  fromPhoneNumber: 
 
-# Anypoint Platform
 anypoint:
   platform:
-    analytics_base_uri:
-    client_id:
-    client_secret:
-    base_uri:
-    visualizer:
-      layer:   
-       
-api:
-  autodiscovery:
+    analytics_base_uri: 
+    client_id: 
+    client_secret: 
+    base_uri: 
+    visualizer: 
+      layer: 
 
-# Keystore
-keystore: 
-  password:
+api:
+  autodiscovery: 
+
+keystore:
+  path: 
+  password: 
