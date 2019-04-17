@@ -145,7 +145,7 @@ output application/json
 output application/json
 var messageRaw=payload.body replace /Sent from your Twilio trial account - / with ''
 var messageArray=messageRaw splitBy ' - '
-var subject=(messageArray[0] splitBy '[Subject: ')[1] replace ']' with ''
+var subject=messageArray[0]
 var message=messageArray[1]
 ---
 {
@@ -169,7 +169,7 @@ output application/java
 {
 	To: payload.recipient,
 	From: p('twilio.fromPhoneNumber'),
-	Body: '[Subject: ' ++ payload.subject as String ++ '] - ' ++ payload.message as String
+	Body: payload.subject as String ++ ' - ' ++ payload.message as String
 }]]></ee:set-payload>
 				</ee:message>
 			</ee:transform>

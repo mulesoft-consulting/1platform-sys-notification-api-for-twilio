@@ -44,8 +44,10 @@
 					       <anypoint.platform.visualizer.layer>System</anypoint.platform.visualizer.layer>
 					       <anypoint.platform.client_id>${env.ANYPOINT_CLIENT_ID}</anypoint.platform.client_id>
 					       <anypoint.platform.client_secret>${env.ANYPOINT_CLIENT_SECRET}</anypoint.platform.client_secret>
-	 				    	<twilio.username>${env.TWILIO_USERNAME}</twilio.username>
-							<twilio.password>${env.TWILIO_PASSWORD}</twilio.password>
+	 				    	   <twilio.username>${env.TWILIO_USERNAME}</twilio.username>
+						   <twilio.password>${env.TWILIO_PASSWORD}</twilio.password>
+						   <!--  ANYPOINT MONITORING -->
+						   <anypoint.platform.config.analytics.agent.enabled>true</anypoint.platform.config.analytics.agent.enabled>
 						</properties>
 	 				</cloudHubDeployment>
                 </configuration>
